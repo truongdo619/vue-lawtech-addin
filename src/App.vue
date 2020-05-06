@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div v-if="isOfficeInitialized">
+      <router-view></router-view>
+    </div>
+    <div v-loading="!isOfficeInitialized" class="spinner">
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+
+  computed: {
+    isOfficeInitialized(){
+      return this.$store.state.spell.isOfficeInitialized
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body{
+  margin: 0px;
+}
+#app{
+  font-family: RobotoRegular,sans-serif;
+  min-width: 300px;
+}
+#app .spinner{
+  position: inherit!important;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 </style>
