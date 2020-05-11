@@ -1,9 +1,5 @@
 <template>
     <div>
-            <div class="nav-bar">
-                <i @click="handleClick" class="el-icon-back"></i>
-                <span class="nav-title">Thuộc tính văn bản</span>
-            </div>
             <div class="doc-detail">
                 
             <table cellpadding="0px" cellspacing="1px" border="none" width="100%">
@@ -98,8 +94,8 @@
                                 </tr>
 
                                 <tr>
-                                    <td colSpan="4">
-                                        <p><strong>Thông tin áp dụng</strong></p>
+                                    <td colSpan="4" class="label">
+                                        <p>Thông tin áp dụng</p>
                                         
                                     </td>
                                 </tr>
@@ -120,7 +116,7 @@ export default {
     name : "DocumentDetail",
     computed: {
         item (){
-            return this.$store.state.search.listElement[this.$store.state.search.activeElement];
+            return this.$store.state.search.listElement[0];
         },
         effective_date(){
             let effective_date = this.item["_source"]["attribute"]['effective_date'];
@@ -150,9 +146,6 @@ export default {
 
 <style scoped>
 
-.doc-detail{
-    padding: 10px;
-}
 
 table{
     margin-top: 10px;
