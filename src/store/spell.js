@@ -1,3 +1,4 @@
+/* global Word */
 import {spell_check} from '../service/spell_check_service/spell_api'
 
 const spellModule = {
@@ -48,10 +49,10 @@ const spellModule = {
                 state.errorItems = [];
                 state.totalErrorItems = 0;
             }
-            let result = items.data.map(function(el, id) {
+            let result = items.data.map(function(el) {
                 var o = Object.assign({}, el);
                 o.id = state.totalErrorItems++;
-                o.paraId = items.index;;
+                o.paraId = items.index;
                 return o;
               })
             state.errorItems = state.errorItems.concat(result);
@@ -69,7 +70,7 @@ const spellModule = {
         set_state_office({commit}, value){
             commit('SET_SATE_OFFiCE', value)
         },
-        async select_current_btn({state, commit}, data){
+        async select_current_btn({state}, data){
             let arr = []
             if (state.isCur == true){
                 arr = state.errorItemsCur;
@@ -121,7 +122,7 @@ const spellModule = {
             
             document.querySelector('div.el-collapse-item[errorId="' + data.id + '"]').style.display = "none";
         },
-        async select_current_para({state, commit}, data){
+        async select_current_para({state}, data){
             let arr = []
             if (state.isCur == true){
                 arr = state.errorItemsCur;

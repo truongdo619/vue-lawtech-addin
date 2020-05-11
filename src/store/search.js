@@ -1,3 +1,4 @@
+/* global Word */
 import {search_by_title} from "../service/search_service/search_api"
 
 const searchModule = {
