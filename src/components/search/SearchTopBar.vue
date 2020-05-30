@@ -1,7 +1,7 @@
 <template>
     <div class="topbar">
         <span><b>Tìm kiếm</b></span>
-        <router-link to="/v2/search/home">
+        <router-link to="/search/home">
             <span><i class="el-icon-close"></i></span>
         </router-link>
     </div>

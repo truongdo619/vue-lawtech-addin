@@ -34,7 +34,7 @@
   <Permissions>ReadWriteDocument</Permissions>
 
   <!--BeginAddinCommandsMode integration-->
-  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">   
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
     <Hosts>
       <!--Each host can have a different set of commands. Cool huh!? -->
       <!-- Workbook=Excel Document=Word Presentation=PowerPoint -->
@@ -42,22 +42,22 @@
       <Host xsi:type="Document">
       	<!-- Form factor. Currenly only DesktopFormFactor is supported. We will add TabletFormFactor and PhoneFormFactor in the future-->
         <DesktopFormFactor>
-          
-           <!--GetStarted information used on the callout that appears when installing the add-in. 
+
+           <!--GetStarted information used on the callout that appears when installing the add-in.
             Ensure you have build 16.0.6769 or above for GetStarted section to work-->
           <GetStarted>
 						<!--Title of the Getting Started callout. resid points to a ShortString resource -->
 						<Title resid="Lawtech.GetStarted.Title"/>
-						
+
 						<!--Description of the Getting Started callout. resid points to a LongString resource -->
 						<Description resid="Lawtech.GetStarted.Description"/>
-						
-						<!--Not used right now but you need to provide a valid resource. We will add code in the future to consume this URL. 
+
+						<!--Not used right now but you need to provide a valid resource. We will add code in the future to consume this URL.
 							resid points to a Url resource -->
 						<LearnMoreUrl resid="Lawtech.GetStarted.LearnMoreUrl"/>
 					</GetStarted>
-          
-        	<!--Function file is an html page that includes the javascript where functions for ExecuteAction will be called. 
+
+        	<!--Function file is an html page that includes the javascript where functions for ExecuteAction will be called.
             Think of the FunctionFile as the "code behind" ExecuteFunction-->
           <FunctionFile resid="Lawtech.FunctionFile.Url" />
 
@@ -78,7 +78,7 @@
                   <bt:Image size="32" resid="Lawtech.TaskpaneButton.Icon32" />
                   <bt:Image size="80" resid="Lawtech.TaskpaneButton.Icon80" />
                 </Icon>
-                
+
                 <Control xsi:type="Button" id="Lawtech.SearchTaskpane">
                   <Label resid="Lawtech.SearchTaskpane.Label" />
                   <Supertip>
@@ -190,7 +190,7 @@
                   <bt:Image size="32" resid="Lawtech.TaskpaneButton.Icon32" />
                   <bt:Image size="80" resid="Lawtech.TaskpaneButton.Icon80" />
                 </Icon>
-                
+
                 <Control xsi:type="Button" id="Lawtech.TutorialButton">
                   <Label resid="Lawtech.TutorialButton.Label" />
                   <Supertip>
@@ -296,16 +296,16 @@
         <bt:Image id="Lawtech.HelpButton.Icon16" DefaultValue="https://lawtechaddin.simidoc.vn/assets/help-16.png" />
         <bt:Image id="Lawtech.HelpButton.Icon32" DefaultValue="https://lawtechaddin.simidoc.vn/assets/help-32.png" />
         <bt:Image id="Lawtech.HelpButton.Icon80" DefaultValue="https://lawtechaddin.simidoc.vn/assets/help-80.png" />
-      
+
       </bt:Images>
       <bt:Urls>
         <bt:Url id="Lawtech.FunctionFile.Url" DefaultValue="https://lawtechaddin.simidoc.vn/DialogFunction.html" />
-        <bt:Url id="Lawtech.MentionTaskpane.Url" DefaultValue="https://localhost:3000/v2/mention/home" />
-        <bt:Url id="Lawtech.TemplateTaskpane.Url" DefaultValue="https://localhost:3000/v2/template/home" />
-        <bt:Url id="Lawtech.SearchTaskpane.Url" DefaultValue="https://localhost:3000/v2/search/home" />
-        <bt:Url id="Lawtech.SpellTaskpane.Url" DefaultValue="https://localhost:3000/v2/spell/home" />
+        <bt:Url id="Lawtech.MentionTaskpane.Url" DefaultValue="https://lawtech.simidoc.vn/mention/home" />
+        <bt:Url id="Lawtech.TemplateTaskpane.Url" DefaultValue="https://lawtech.simidoc.vn/template/home" />
+        <bt:Url id="Lawtech.SearchTaskpane.Url" DefaultValue="https://lawtech.simidoc.vn/search/home" />
+        <bt:Url id="Lawtech.SpellTaskpane.Url" DefaultValue="https://lawtech.simidoc.vn/spell/home" />
          <!--LearnMore URL currently not used -->
-        <bt:Url id="Lawtech.SearchTaskpane.List.Url" DefaultValue="https://localhost:3000/v2/search/list?isSelected=true">
+        <bt:Url id="Lawtech.SearchTaskpane.List.Url" DefaultValue="https://lawtech.simidoc.vn/search/list?isSelected=true">
         </bt:Url>
 
 

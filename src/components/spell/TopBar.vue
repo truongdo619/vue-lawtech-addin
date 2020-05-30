@@ -1,7 +1,7 @@
 <template>
     <div class="topbar">
         <span><b>Danh sách lỗi</b></span>
-        <router-link to="/v2/spell/home">
+        <router-link to="/spell/home">
             <span><i class="el-icon-close"></i></span>
         </router-link>
     </div>

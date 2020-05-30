@@ -23,7 +23,7 @@
 
             <p>Để sử dụng công cụ, nhấn <b>Khởi động:</b></p>
             <div style="margin-bottom:10px">
-                <router-link to="/v2/mention/list">
+                <router-link to="/mention/list">
                     <el-button icon="el-icon-arrow-right">Khởi động</el-button>
                 </router-link>
             </div>
