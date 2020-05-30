@@ -8,6 +8,8 @@ import SearchDetail from '../views/search/Detail'
 import SearchList from '../views/search/List'
 import HomeMention from '../views/mention/Home'
 import MentionList from '../views/mention/List'
+import HomeTemplate from '../views/template/index'
+import TemplateCreator from '../views/template_creator/index'
 
 Vue.use(Router)
 
@@ -53,6 +55,16 @@ export default new Router({
             path: '/mention/list',
             name: 'MentionList',
             component: MentionList
+        },
+        {
+            path: '/template/home',
+            name: 'HomeTemplate',
+            component: HomeTemplate
+        },
+        {
+            path: '/template/creator',
+            name: 'TemplateCreator',
+            component: TemplateCreator
         }
     ]
 })

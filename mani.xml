@@ -115,7 +115,7 @@
                   </Action>
                 </Control>
 
-                <!-- <Control xsi:type="Button" id="Lawtech.MentionTaskpane">
+                <Control xsi:type="Button" id="Lawtech.MentionTaskpane">
                   <Label resid="Lawtech.MentionTaskpane.Label" />
                   <Supertip>
                     <Title resid="Lawtech.MentionTaskpane.Label" />
@@ -130,12 +130,58 @@
                     <TaskpaneId>ButtonId2</TaskpaneId>
                     <SourceLocation resid="Lawtech.MentionTaskpane.Url" />
                   </Action>
-                </Control> -->
+                </Control>
+
+                <Control xsi:type="Button" id="Lawtech.TemplateTaskpane">
+                  <Label resid="Lawtech.TemplateTaskpane.Label" />
+                  <Supertip>
+                    <Title resid="Lawtech.TemplateTaskpane.Label" />
+                    <Description resid="Lawtech.TemplateTaskpane.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Lawtech.TemplateTaskpane.Icon16" />
+                    <bt:Image size="32" resid="Lawtech.TemplateTaskpane.Icon32" />
+                    <bt:Image size="80" resid="Lawtech.TemplateTaskpane.Icon80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId2</TaskpaneId>
+                    <SourceLocation resid="Lawtech.TemplateTaskpane.Url" />
+                  </Action>
+                </Control>
               </Group>
+
 
               <Group id="Lawtech.Tab.Group2">
               	 <!--Label for your group. resid must point to a ShortString resource -->
                 <Label resid="Lawtech.Tab.GroupLabel2" />
+                <Icon>
+                <!-- Sample Todo: Each size needs its own icon resource or it will look distorted when resized -->
+                <!--Icons. Required sizes 16,31,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX -->
+                <!--Use PNG icons and remember that all URLs on the resources section must use HTTPS -->
+                  <bt:Image size="16" resid="Lawtech.TaskpaneButton.Icon16" />
+                  <bt:Image size="32" resid="Lawtech.TaskpaneButton.Icon32" />
+                  <bt:Image size="80" resid="Lawtech.TaskpaneButton.Icon80" />
+                </Icon>
+                <Control xsi:type="Button" id="Lawtech.HelpButton2">
+                  <Label resid="Lawtech.TemplateTaskpane.Label" />
+                  <Supertip>
+                    <Title resid="Lawtech.TemplateTaskpane.Label" />
+                    <Description resid="Lawtech.TemplateTaskpane.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Lawtech.TemplateTaskpane.Icon16" />
+                    <bt:Image size="32" resid="Lawtech.TemplateTaskpane.Icon32" />
+                    <bt:Image size="80" resid="Lawtech.TemplateTaskpane.Icon80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>showTemplateDialog</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+
+              <Group id="Lawtech.Tab.Group3">
+              	 <!--Label for your group. resid must point to a ShortString resource -->
+                <Label resid="Lawtech.Tab.GroupLabel3" />
                 <Icon>
                 <!-- Sample Todo: Each size needs its own icon resource or it will look distorted when resized -->
                 <!--Icons. Required sizes 16,31,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX -->
@@ -229,6 +275,9 @@
     </Hosts>
     <Resources>
       <bt:Images>
+        <bt:Image id="Lawtech.TemplateTaskpane.Icon16" DefaultValue="https://lawtechaddin.simidoc.vn/assets/template-16.png" />
+        <bt:Image id="Lawtech.TemplateTaskpane.Icon32" DefaultValue="https://lawtechaddin.simidoc.vn/assets/template-32.png" />
+        <bt:Image id="Lawtech.TemplateTaskpane.Icon80" DefaultValue="https://lawtechaddin.simidoc.vn/assets/template-80.png" />
         <bt:Image id="Lawtech.MentionTaskpane.Icon16" DefaultValue="https://lawtechaddin.simidoc.vn/assets/mention-16.png" />
         <bt:Image id="Lawtech.MentionTaskpane.Icon32" DefaultValue="https://lawtechaddin.simidoc.vn/assets/mention-32.png" />
         <bt:Image id="Lawtech.MentionTaskpane.Icon80" DefaultValue="https://lawtechaddin.simidoc.vn/assets/mention-80.png" />
@@ -252,10 +301,11 @@
       <bt:Urls>
         <bt:Url id="Lawtech.FunctionFile.Url" DefaultValue="https://lawtechaddin.simidoc.vn/DialogFunction.html" />
         <bt:Url id="Lawtech.MentionTaskpane.Url" DefaultValue="https://localhost:3000/mention/home" />
+        <bt:Url id="Lawtech.TemplateTaskpane.Url" DefaultValue="https://localhost:3000/template/home" />
         <bt:Url id="Lawtech.SearchTaskpane.Url" DefaultValue="https://localhost:3000/search/home" />
         <bt:Url id="Lawtech.SpellTaskpane.Url" DefaultValue="https://localhost:3000/spell/home" />
-        <bt:Url id="Lawtech.TutorialButton.Url" DefaultValue="https://localhost:3000" />
-        <bt:Url id="Lawtech.HelpButton.Url" DefaultValue="https://localhost:3000" />
+        <bt:Url id="Lawtech.TutorialButton.Url" DefaultValue="https://lawtechaddin.simidoc.vn" />
+        <bt:Url id="Lawtech.HelpButton.Url" DefaultValue="https://lawtechaddin.simidoc.vn" />
          <!--LearnMore URL currently not used -->
         <bt:Url id="Lawtech.SearchTaskpane.List.Url" DefaultValue="https://localhost:3000/search/list?isSelected=true">
         </bt:Url>
@@ -263,13 +313,16 @@
 
       </bt:Urls>
       <bt:ShortStrings>
+      
+        <bt:String id="Lawtech.TemplateTaskpane.Label" DefaultValue="Template" />
         <bt:String id="Lawtech.MentionTaskpane.Label" DefaultValue="Mention" />
         <bt:String id="Lawtech.SearchTaskpane.Label" DefaultValue="Search" />
         <bt:String id="Lawtech.SpellTaskpane.Label" DefaultValue="Spell" />
         <bt:String id="Lawtech.TutorialButton.Label" DefaultValue="Tutorial" />
         <bt:String id="Lawtech.HelpButton.Label" DefaultValue="Help" />
         <bt:String id="Lawtech.Tab.LawtechToolGroup" DefaultValue="Lawtech Tools" />
-        <bt:String id="Lawtech.Tab.GroupLabel2" DefaultValue="About Lawtech" />
+        <bt:String id="Lawtech.Tab.GroupLabel2" DefaultValue="Template Creator" />
+        <bt:String id="Lawtech.Tab.GroupLabel3" DefaultValue="About Lawtech" />
          <bt:String id="Lawtech.Tab.TabLabel" DefaultValue="Lawtech" />
          <bt:String id="Lawtech.GetStarted.Title" DefaultValue="Simple add-in was succesfully loaded">
           <bt:Override Locale="ja-jp" Value="JA-JP Get Started Title" />
@@ -284,7 +337,8 @@
 
       </bt:ShortStrings>
       <bt:LongStrings>
-      
+        
+        <bt:String id="Lawtech.TemplateTaskpane.Tooltip" DefaultValue="Nhấn để mở Template Taskpane." />
         <bt:String id="Lawtech.MentionTaskpane.Tooltip" DefaultValue="Nhấn để mở Mention Taskpane." />
         <bt:String id="Lawtech.SearchTaskpane.Tooltip" DefaultValue="Nhấn để mở Search Taskpane." />
         <bt:String id="Lawtech.SpellTaskpane.Tooltip" DefaultValue="Nhấn để mở Spell Taskpane." />
