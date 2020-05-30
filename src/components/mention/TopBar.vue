@@ -1,7 +1,7 @@
 <template>
     <div class="topbar">
         <span><b>Danh sách văn bản</b></span>
-        <router-link to="/mention/home">
+        <router-link to="/v2/mention/home">
             <span><i class="el-icon-close"></i></span>
         </router-link>
     </div>

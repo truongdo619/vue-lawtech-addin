@@ -25,12 +25,12 @@
 
         <div class="button_pane">
             <div style="margin-bottom:10px">
-                <router-link to="/spell/curlist">
+                <router-link to="/v2/spell/curlist">
                     <el-button type="primary">Kiểm tra đoạn văn</el-button>
                 </router-link>
             </div>
             <div>
-                <router-link to="/spell/fulllist">
+                <router-link to="/v2/spell/fulllist">
                     <el-button type="danger">Kiểm tra văn bản</el-button>
                 </router-link>
             </div>

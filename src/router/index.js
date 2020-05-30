@@ -17,52 +17,52 @@ export default new Router({
     mode: 'history',
     routes: [
         {
-            path: '/spell/home',
+            path: '/v2/spell/home',
             name: 'HomeSpell',
             component: HomeSpell
         },
         {
-            path: '/spell/curlist',
+            path: '/v2/spell/curlist',
             name: 'CurSpell',
             component: CurSpell
         },
         {
-            path: '/spell/fulllist',
+            path: '/v2/spell/fulllist',
             name: 'FullSpell',
             component: FullSpell
         },
         {
-            path: '/search/home',
+            path: '/v2/search/home',
             name: 'HomeSearch',
             component: HomeSearch
         },
         {
-            path: '/search/list',
+            path: '/v2/search/list',
             name: 'SearchList',
             component: SearchList
         },
         {
-            path: '/search/detail',
+            path: '/v2/search/detail',
             name: 'SearchDetail',
             component: SearchDetail
         },
         {
-            path: '/mention/home',
+            path: '/v2/mention/home',
             name: 'HomeMention',
             component: HomeMention
         },
         {
-            path: '/mention/list',
+            path: '/v2/mention/list',
             name: 'MentionList',
             component: MentionList
         },
         {
-            path: '/template/home',
+            path: '/v2/template/home',
             name: 'HomeTemplate',
             component: HomeTemplate
         },
         {
-            path: '/template/creator',
+            path: '/v2/template/creator',
             name: 'TemplateCreator',
             component: TemplateCreator
         }
