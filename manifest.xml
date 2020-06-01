@@ -1,79 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
-
-<!-- See https://github.com/OfficeDev/Office-Add-in-Commands-Samples for documentation-->
-
-<!-- BeginBasicSettings: Add-in metadata, used for all versions of Office unless override provided -->
-
-<!--IMPORTANT! Id must be unique for your add-in. If you clone this manifest ensure that you change this id to your own GUID -->
-  <Id>e504fb41-a92a-4526-b101-542f357b7acb</Id>
-  <Version>1.0.0.0</Version>
-  <ProviderName>VNU</ProviderName>
-  <DefaultLocale>en-US</DefaultLocale>
-   <!-- The display name of your add-in. Used on the store and various placed of the Office UI such as the add-ins dialog -->
-  <DisplayName DefaultValue="Lawtech" />
+  <Id>631b8e29-2ffc-478e-a22f-fb5af2bdc624</Id>
+  <Version>2.0.0.0</Version>
+  <ProviderName>vnu</ProviderName>
+  <DefaultLocale>vi-VN</DefaultLocale>
+  <DisplayName DefaultValue="Lawtech Add-in" />
   <Description DefaultValue="Lawtech tools to get started." />
-   <!--Icon for your add-in. Used on installation screens and the add-ins dialog -->
   <IconUrl DefaultValue="https://lawtechaddin.simidoc.vn/assets/icon-32.png" />
-
   <HighResolutionIconUrl DefaultValue="https://lawtechaddin.simidoc.vn/assets/icon-80.png"/>
-  <!--BeginTaskpaneMode integration. Office 2013 and any client that doesn't understand commands will use this section.
-    This section will also be used if there are no VersionOverrides -->
-<SupportUrl DefaultValue="https://lawtechaddin.simidoc.vn"/>
+  <SupportUrl DefaultValue="https://lawtechaddin.simidoc.vn.user_manual.html"/>
   <AppDomains>
-    <AppDomain>lawtechaddin.simidoc.vn</AppDomain>
+    <AppDomain>https://lawtechaddin.simidoc.vn</AppDomain>
+    <AppDomain>https://lawtech.simidoc.vn</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Document"/>
   </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="AddinCommands" MinVersion="1.1" />
+      <Set Name="WordApi" MinVersion="1.1" />
+    </Sets>
+  </Requirements>
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://localhost:3000" />
+    <SourceLocation DefaultValue="https://lawtechaddin.simidoc.vn" />
   </DefaultSettings>
-   <!--EndTaskpaneMode integration -->
-
   <Permissions>ReadWriteDocument</Permissions>
-
-  <!--BeginAddinCommandsMode integration-->
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
     <Hosts>
-      <!--Each host can have a different set of commands. Cool huh!? -->
-      <!-- Workbook=Excel Document=Word Presentation=PowerPoint -->
-      <!-- Make sure the hosts you override match the hosts declared in the top section of the manifest -->
       <Host xsi:type="Document">
-      	<!-- Form factor. Currenly only DesktopFormFactor is supported. We will add TabletFormFactor and PhoneFormFactor in the future-->
         <DesktopFormFactor>
-
-           <!--GetStarted information used on the callout that appears when installing the add-in.
-            Ensure you have build 16.0.6769 or above for GetStarted section to work-->
-          <GetStarted>
-						<!--Title of the Getting Started callout. resid points to a ShortString resource -->
-						<Title resid="Lawtech.GetStarted.Title"/>
-
-						<!--Description of the Getting Started callout. resid points to a LongString resource -->
-						<Description resid="Lawtech.GetStarted.Description"/>
-
-						<!--Not used right now but you need to provide a valid resource. We will add code in the future to consume this URL.
-							resid points to a Url resource -->
-						<LearnMoreUrl resid="Lawtech.GetStarted.LearnMoreUrl"/>
-					</GetStarted>
-
-        	<!--Function file is an html page that includes the javascript where functions for ExecuteAction will be called.
-            Think of the FunctionFile as the "code behind" ExecuteFunction-->
           <FunctionFile resid="Lawtech.FunctionFile.Url" />
-
-          <!--PrimaryCommandSurface==Main Office Ribbon-->
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
-          	<!--Use OfficeTab to extend an existing Tab. Use CustomTab to create a new tab -->
-            <!-- Documentation includes all the IDs currently tested to work -->
             <CustomTab id="Lawtech.Tab">
-				<!--Group ID-->
               <Group id="Lawtech.Tab.LawtechToolGroup">
-              	 <!--Label for your group. resid must point to a ShortString resource -->
                 <Label resid="Lawtech.Tab.LawtechToolGroup" />
                 <Icon>
-                <!-- Sample Todo: Each size needs its own icon resource or it will look distorted when resized -->
-                <!--Icons. Required sizes 16,31,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX -->
-                <!--Use PNG icons and remember that all URLs on the resources section must use HTTPS -->
                   <bt:Image size="16" resid="Lawtech.TaskpaneButton.Icon16" />
                   <bt:Image size="32" resid="Lawtech.TaskpaneButton.Icon32" />
                   <bt:Image size="80" resid="Lawtech.TaskpaneButton.Icon80" />
@@ -92,7 +54,6 @@
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
                     <TaskpaneId>ButtonId2</TaskpaneId>
-                     <!--Provide a url resource id for the location that will be displayed on the task pane -->
                     <SourceLocation resid="Lawtech.SearchTaskpane.Url" />
                   </Action>
                 </Control>
@@ -110,7 +71,6 @@
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
                     <TaskpaneId>ButtonId2</TaskpaneId>
-                     <!--Provide a url resource id for the location that will be displayed on the task pane -->
                     <SourceLocation resid="Lawtech.SpellTaskpane.Url" />
                   </Action>
                 </Control>
@@ -151,41 +111,33 @@
               </Group>
 
 
-              <Group id="Lawtech.Tab.Group2">
-              	 <!--Label for your group. resid must point to a ShortString resource -->
-                <Label resid="Lawtech.Tab.GroupLabel2" />
-                <Icon>
-                <!-- Sample Todo: Each size needs its own icon resource or it will look distorted when resized -->
-                <!--Icons. Required sizes 16,31,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX -->
-                <!--Use PNG icons and remember that all URLs on the resources section must use HTTPS -->
-                  <bt:Image size="16" resid="Lawtech.TaskpaneButton.Icon16" />
-                  <bt:Image size="32" resid="Lawtech.TaskpaneButton.Icon32" />
-                  <bt:Image size="80" resid="Lawtech.TaskpaneButton.Icon80" />
-                </Icon>
-                <Control xsi:type="Button" id="Lawtech.HelpButton2">
-                  <Label resid="Lawtech.TemplateTaskpane.Label" />
-                  <Supertip>
-                    <Title resid="Lawtech.TemplateTaskpane.Label" />
-                    <Description resid="Lawtech.TemplateTaskpane.Tooltip" />
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Lawtech.TemplateTaskpane.Icon16" />
-                    <bt:Image size="32" resid="Lawtech.TemplateTaskpane.Icon32" />
-                    <bt:Image size="80" resid="Lawtech.TemplateTaskpane.Icon80" />
-                  </Icon>
-                  <Action xsi:type="ExecuteFunction">
-                    <FunctionName>showTemplateDialog</FunctionName>
-                  </Action>
-                </Control>
-              </Group>
+<!--              <Group id="Lawtech.Tab.Group2">-->
+<!--                <Label resid="Lawtech.Tab.GroupLabel2" />-->
+<!--                <Icon>-->
+<!--                  <bt:Image size="16" resid="Lawtech.TaskpaneButton.Icon16" />-->
+<!--                  <bt:Image size="32" resid="Lawtech.TaskpaneButton.Icon32" />-->
+<!--                  <bt:Image size="80" resid="Lawtech.TaskpaneButton.Icon80" />-->
+<!--                </Icon>-->
+<!--                <Control xsi:type="Button" id="Lawtech.HelpButton2">-->
+<!--                  <Label resid="Lawtech.TemplateTaskpane.Label" />-->
+<!--                  <Supertip>-->
+<!--                    <Title resid="Lawtech.TemplateTaskpane.Label" />-->
+<!--                    <Description resid="Lawtech.TemplateTaskpane.Tooltip" />-->
+<!--                  </Supertip>-->
+<!--                  <Icon>-->
+<!--                    <bt:Image size="16" resid="Lawtech.TemplateTaskpane.Icon16" />-->
+<!--                    <bt:Image size="32" resid="Lawtech.TemplateTaskpane.Icon32" />-->
+<!--                    <bt:Image size="80" resid="Lawtech.TemplateTaskpane.Icon80" />-->
+<!--                  </Icon>-->
+<!--                  <Action xsi:type="ExecuteFunction">-->
+<!--                    <FunctionName>showTemplateDialog</FunctionName>-->
+<!--                  </Action>-->
+<!--                </Control>-->
+<!--              </Group>-->
 
               <Group id="Lawtech.Tab.Group3">
-              	 <!--Label for your group. resid must point to a ShortString resource -->
                 <Label resid="Lawtech.Tab.GroupLabel3" />
                 <Icon>
-                <!-- Sample Todo: Each size needs its own icon resource or it will look distorted when resized -->
-                <!--Icons. Required sizes 16,31,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX -->
-                <!--Use PNG icons and remember that all URLs on the resources section must use HTTPS -->
                   <bt:Image size="16" resid="Lawtech.TaskpaneButton.Icon16" />
                   <bt:Image size="32" resid="Lawtech.TaskpaneButton.Icon32" />
                   <bt:Image size="80" resid="Lawtech.TaskpaneButton.Icon80" />
@@ -225,15 +177,11 @@
               </Group>
 
 
-              <!-- Label of your tab -->
-              <!-- If validating with XSD it needs to be at the end, we might change this before release -->
               <Label resid="Lawtech.Tab.TabLabel" />
             </CustomTab>
           </ExtensionPoint>
 
         <ExtensionPoint xsi:type="ContextMenu">
-            <!--The id of the menu specifies the existing context menu being extended-->
-            <!--ContextMenuCell (Excel) and ContextMenuText (Word) are currently supported-->
           <OfficeMenu id="ContextMenuText">
             <Control xsi:type="Menu" id="LawtechContextMenu">
               <Label resid="ContextMenuLabel" />
@@ -259,9 +207,7 @@
                     <bt:Image size="80" resid="Lawtech.SearchTaskpane.Icon80" />
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <!--TaskPaneId is required. It is currently not used by the framework but it will be in a future iteration -->
                     <TaskpaneId>ButtonId2</TaskpaneId>
-                    <!--The URL to show inside the taskpane -->
                     <SourceLocation resid="Lawtech.SearchTaskpane.List.Url" />
                   </Action>
                 </Item>
@@ -311,7 +257,7 @@
 
       </bt:Urls>
       <bt:ShortStrings>
-      
+
         <bt:String id="Lawtech.TemplateTaskpane.Label" DefaultValue="Template" />
         <bt:String id="Lawtech.MentionTaskpane.Label" DefaultValue="Mention" />
         <bt:String id="Lawtech.SearchTaskpane.Label" DefaultValue="Search" />
@@ -324,7 +270,7 @@
          <bt:String id="Lawtech.Tab.TabLabel" DefaultValue="Lawtech" />
          <bt:String id="Lawtech.GetStarted.Title" DefaultValue="Simple add-in was succesfully loaded">
           <bt:Override Locale="ja-jp" Value="JA-JP Get Started Title" />
-        </bt:String>    
+        </bt:String>
 
         <bt:String id="ContextMenuTitle" DefaultValue="Tìm kiếm">
         </bt:String>
@@ -335,7 +281,7 @@
 
       </bt:ShortStrings>
       <bt:LongStrings>
-        
+
         <bt:String id="Lawtech.TemplateTaskpane.Tooltip" DefaultValue="Nhấn để mở Template Taskpane." />
         <bt:String id="Lawtech.MentionTaskpane.Tooltip" DefaultValue="Nhấn để mở Mention Taskpane." />
         <bt:String id="Lawtech.SearchTaskpane.Tooltip" DefaultValue="Nhấn để mở Search Taskpane." />

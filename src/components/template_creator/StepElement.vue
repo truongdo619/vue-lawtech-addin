@@ -7,9 +7,9 @@
         </div>
         <div class="el_step_select" v-if="this.item.type === 'radio'">
             <el-radio-group v-model="radio">
-                <div  style="margin-bottom: 10px" v-for="item in item.options" :key="item">
-                    <el-radio :label="item">{{item.content}}</el-radio >
-                   <el-tag v-if="item.tag" effect="dark" style="overflow: hidden">{{item.tag}}</el-tag>
+                <div  v-for="item in item.options" :key="item">
+                    <el-radio :label="item">{{item}}</el-radio >
+                   <el-tag effect="dark" style="overflow: hidden">Recommended</el-tag>
                 </div>
 
             </el-radio-group>
@@ -21,9 +21,9 @@
             <el-checkbox-group v-model="checkedBox" @change="handleCheckedOptionChange">
 
                 <div  v-for="item in item.options" :key="item">
-                    <el-checkbox :label="item">{{item.content}}</el-checkbox>
+                    <el-checkbox :label="item">{{item}}</el-checkbox>
 
-                   <el-tag v-if="item.tag" effect="dark" style="overflow: hidden">{{item.tag}}</el-tag>
+                   <el-tag effect="dark" style="overflow: hidden">Recommended</el-tag>
                 </div>
             </el-checkbox-group>
         </div>
@@ -76,11 +76,15 @@
 }
 .el_step_select .el-radio{
     display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.el_step_select :last-of-type.el-checkbox{
+.el_step_select .el-checkbox{
     display: inline-block;
+    margin-top: 10px;
     margin-right: 30px;
+    margin-bottom: 10px;
 }
 
 .el_step_select .el-tag{
@@ -89,11 +93,9 @@
     background-color: #009ddc;
     top: -15px;
     position: relative;
-    word-wrap: break-word;
-    white-space: normal;
 }
 
-.el_step_select .el-checkbox .el-checkbox__label{
+.el_step_select .el-radio__label{
     display: block;
     word-wrap: break-word;
     white-space: normal;

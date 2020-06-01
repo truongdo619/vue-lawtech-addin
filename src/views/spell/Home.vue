@@ -116,4 +116,8 @@
 .home .button_pane a{
     text-decoration: none;
 }
+
+.home .button_pane{
+    margin-bottom: 30px;
+}
 </style>

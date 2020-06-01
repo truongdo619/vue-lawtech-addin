@@ -25,6 +25,7 @@ export default {
 <style>
 body{
   margin: 0px;
+  background-color: #ffffff;
 }
 #app{
   font-family: RobotoRegular,sans-serif;
