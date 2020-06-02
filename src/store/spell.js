@@ -12,7 +12,9 @@ const spellModule = {
         totalErrorItems : 0,
         currentParaLoading: 1,
         loadingErrorDone: false,
-        isCur : true
+        isCur : true,
+        dictionary : []
+
     },
     mutations: {
         SET_CURRENT_PARA_LOADING(state, value){
@@ -64,6 +66,9 @@ const spellModule = {
         SET_SATE_LOAD_FULL(state, value){
             state.loadErrorItems = value;
             state.isCur = false;
+        },
+        ADD_TO_DICTIONARY(state, word){
+            state.dictionary.push(word);
         }
     },
     actions: {
@@ -94,21 +99,21 @@ const spellModule = {
 
                 // Get word selection
                 let paragraph = context.document.getSelection().paragraphs.getFirst();
-                let words = paragraph.split([" ", "-", '"', "\xa0", ","], true /* trimDelimiters*/, true /* trimSpaces */);
+                let words = paragraph.split([" ", "-", ":", '"', "\xa0", ",", "(", ")", "[", "]", "{", "}"], true /* trimDelimiters*/, true /* trimSpaces */);
                 words.load("text");
                 paragraph.load("text")
                 await context.sync();
                 let pos = items[0]["wordPos"];
                 let word = items[0]["errorWord"]
-                for (var i=0; i< 10; i++){
+                for (let i=0; i< 20; i++){
                     let text = words.items[pos - i].text.toLowerCase();
-                    if (text == word)
+                    if (text === word)
                     {      
                         pos =  pos-i;
                         break;
                     }
                     text = words.items[pos + i].text.toLowerCase();
-                    if (text == word)
+                    if (text === word)
                     {      
                         pos =  pos+i;
                         break;
@@ -124,14 +129,14 @@ const spellModule = {
         },
         async select_current_para({state}, data){
             let arr = []
-            if (state.isCur == true){
+            if (state.isCur === true){
                 arr = state.errorItemsCur;
             }
             else{
                 arr = state.errorItems;
             }
             let items = arr.filter((item) => {
-                return item.id == data.id;
+                return item.id === data.id;
             })
             await Word.run(async context => {
 
@@ -145,21 +150,21 @@ const spellModule = {
 
                 // Get word selection
                 let paragraph = context.document.getSelection().paragraphs.getFirst();
-                let words = paragraph.split([" ", "-", '"', "\xa0", ","], true /* trimDelimiters*/, true /* trimSpaces */);
+                let words = paragraph.split([" ", "-", ":", '"', "\xa0", ",", "(", ")", "[", "]", "{", "}"], true /* trimDelimiters*/, true /* trimSpaces */);
                 words.load("text");
                 paragraph.load("text")
                 await context.sync();
                 let pos = items[0]["wordPos"];
                 let word = items[0]["errorWord"]
-                for (var i=0; i< 10; i++){
+                for (let i=0; i< 20; i++){
                     let text = words.items[pos - i].text.toLowerCase();
-                    if (text == word)
+                    if (text === word)
                     {      
                         pos =  pos-i;
                         break;
                     }
                     text = words.items[pos + i].text.toLowerCase();
-                    if (text == word)
+                    if (text === word)
                     {      
                         pos =  pos+i;
                         break;
@@ -211,6 +216,7 @@ const spellModule = {
                         commit('SET_CURRENT_PARA_LOADING', index+1);
                         let paragraph = paragraphs.items[index];
                         let data = await spell_check(paragraph.text);
+                        console.log(paragraph.text)
                         if (index == 0){
                             commit('LOAD_ERROR_ITEMS_FULL', { data : data["data"], index : index+1}, true);
                         }
@@ -223,6 +229,9 @@ const spellModule = {
                 }
             }); 
             commit('SET_LOADING_ERROR_DONE', true);
+        },
+        add_to_dictionary({commit}, word){
+            commit('ADD_TO_DICTIONARY', word);
         }
     },
     getters : {
@@ -233,7 +242,8 @@ const spellModule = {
         totalErrorItems : state => state.totalErrorItems,
         currentParaLoading : state => state.currentParaLoading,
         loadingErrorDone : state => state.loadingErrorDone,
-        isCur : state => state.isCur
+        isCur : state => state.isCur,
+        dictionary : state => state.dictionary
     }
 }
 

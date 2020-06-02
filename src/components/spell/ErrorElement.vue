@@ -1,5 +1,5 @@
 <template>
-  <el-collapse-item :name="item.id" :errorId="item.id">
+  <el-collapse-item v-if="isHidden" :name="item.id" :errorId="item.id">
         <template slot="title">
             <span class="common-label">{{item["errorWord"]}}</span> <div class="inline-dot">.</div> <span style="font-weight: 300;">Đoạn {{item.paraId}}</span>
         </template>
@@ -23,7 +23,7 @@
             </el-col>
             <el-col :span="3" :offset="1" class="list-btn">
                 <el-button @click="handleDeleteBtn" icon="el-icon-delete"></el-button>
-                <el-button icon="el-icon-folder-add"></el-button>
+                <el-button @click="handleAddBtn" icon="el-icon-folder-add"></el-button>
             </el-col>
         </el-row>
      </el-collapse-item>
@@ -39,6 +39,29 @@ export default {
         },
         handleDeleteBtn(){  
             document.querySelector('div.el-collapse-item[errorId="' + this.item.id + '"]').style.display = "none";
+        },
+        handleAddBtn(){
+            this.$confirm('Từ "'+ this.item["errorWord"] +'" sẽ được thêm vào từ điển cá nhân. Tiếp tục?', 'Thông báo', {
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Hủy',
+                type: 'warning'
+            }).then(() => {
+                this.$store.dispatch("spell/add_to_dictionary", this.item["errorWord"]);
+                this.$message({
+                    type: 'success',
+                    message: 'Thêm thành công'
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: 'Hủy hành động'
+                });
+            });
+        }
+    },
+    computed : {
+        isHidden(){
+            return !this.$store.state.spell.dictionary.includes(this.item["errorWord"]);
         }
     }
 } 
