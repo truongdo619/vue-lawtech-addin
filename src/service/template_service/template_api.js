@@ -2,7 +2,7 @@ import axios from "axios";
 
 const template_list = async (page , limit) => {
     try {
-        let res = await axios.get("https://lawtechaddin.simidoc.vn/template/list", {
+        let res = await axios.get("https://lawtech.simidoc.vn/template/list", {
             params: {
                 "limit" : limit,
                 "page" : page
@@ -17,7 +17,7 @@ const template_list = async (page , limit) => {
 
 const template_detail = async (id) => {
     try {
-        let res = await axios.get("https://lawtechaddin.simidoc.vn/template/template", {
+        let res = await axios.get("https://lawtech.simidoc.vn/template/template", {
             params: {
                 "template_id" : id
             }

@@ -57,12 +57,12 @@ export default new Router({
             component: MentionList
         },
         {
-            path: '/template/home',
+            path: '/addin/template/home',
             name: 'HomeTemplate',
             component: HomeTemplate
         },
         {
-            path: '/template/creator',
+            path: '/addin/template/creator',
             name: 'TemplateCreator',
             component: TemplateCreator
         }

@@ -1,8 +1,8 @@
-// const SEARCH_API = "https://lawtechaddin.simidoc.vn";
-// const SPELL_API = "https://lawtechaddin.simidoc.vn/api/spell/spellcheck";
+const SEARCH_API = "https://lawtech.simidoc.vn";
+const SPELL_API = "https://lawtech.simidoc.vn/api/spell/spellcheck";
 
-const SEARCH_API = "http://112.137.142.8:5000";
-const SPELL_API = "http://112.137.142.8:5005/api/spell/spellcheck";
+// const SEARCH_API = "http://112.137.142.8:5000";
+// const SPELL_API = "http://112.137.142.8:5005/api/spell/spellcheck";
 
 const SEARCH_DOCUMENTS = {
   detail: SEARCH_API + '/api/lawtech/document/',

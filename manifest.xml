@@ -247,7 +247,7 @@
       <bt:Urls>
         <bt:Url id="Lawtech.FunctionFile.Url" DefaultValue="https://lawtechaddin.simidoc.vn/DialogFunction.html" />
         <bt:Url id="Lawtech.MentionTaskpane.Url" DefaultValue="https://lawtech.simidoc.vn/mention/home" />
-        <bt:Url id="Lawtech.TemplateTaskpane.Url" DefaultValue="https://lawtech.simidoc.vn/template/home" />
+        <bt:Url id="Lawtech.TemplateTaskpane.Url" DefaultValue="https://lawtech.simidoc.vn/addin/template/home" />
         <bt:Url id="Lawtech.SearchTaskpane.Url" DefaultValue="https://lawtech.simidoc.vn/search/home" />
         <bt:Url id="Lawtech.SpellTaskpane.Url" DefaultValue="https://lawtech.simidoc.vn/spell/home" />
          <!--LearnMore URL currently not used -->
