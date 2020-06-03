@@ -1,12 +1,16 @@
 <template>
     <div>
+            <div class="nav-bar">
+                <i @click="handleClick" class="el-icon-back"></i>
+                <span class="nav-title">Thuộc tính văn bản</span>
+            </div>
             <div class="doc-detail">
                 
             <table cellpadding="0px" cellspacing="1px" border="none" width="100%">
                             <tbody>
                                 <tr>
                                     <td colSpan="4" class="title">
-                                        {{this.item["_source"]["attribute"]['document_info'][0]}}
+                                        {{this.item['document_info'][0]}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -14,21 +18,21 @@
                                         Số ký hiệu
                                     </td>
                                     <td colSpan="3">
-                                        {{this.item["_source"]["attribute"]['official_number'][0]}}
+                                        {{this.item['official_number'][0]}}
                                     </td>
                                     
                                 </tr>
-                                <tr>
-                                    <td class="label">
-                                        Toàn văn
-                                    </td>
-                                    <td colSpan="3">
-                                        <a target="_blank" :href="'https://lawtech.simidoc.vn/van-ban/a/' + this.item['_id']">
-                                            Xem tại đây
-                                        </a>
-                                    </td>
-                                    
-                                </tr>
+<!--                                <tr>-->
+<!--                                    <td class="label">-->
+<!--                                        Toàn văn-->
+<!--                                    </td>-->
+<!--                                    <td colSpan="3">-->
+<!--                                        <a target="_blank" :href="'https://lawtech.simidoc.vn/van-ban/a/' + this.item['_id']">-->
+<!--                                            Xem tại đây-->
+<!--                                        </a>-->
+<!--                                    </td>-->
+<!--                                    -->
+<!--                                </tr>-->
                                 <tr>
                                 <td class="label">
                                         Ngày ban hành
@@ -43,7 +47,7 @@
                                         Loại văn bản
                                     </td>
                                     <td colSpan="3">
-                                        {{this.item["_source"]["attribute"]['document_type'][0]}}
+                                        {{this.item['document_type'][0]}}
                                     </td>
                                     
                                 </tr>
@@ -60,7 +64,7 @@
                                     Ngành
                                     </td>
                                     <td colSpan="3">
-                                        {{this.item["_source"]["attribute"]['document_department'][0]}}
+                                        {{this.item['document_department'][0]}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -69,7 +73,7 @@
                                         Lĩnh vực
                                     </td>
                                     <td colSpan="3">
-                                        {{this.item["_source"]["attribute"]['document_field'][0]}}
+                                        {{this.item['document_field'][0]}}
                                     </td>
                                 
                                 </tr>
@@ -79,9 +83,9 @@
                                     </td>
                                     
                                     <td colSpan="3">
-                                        {{this.item["_source"]["attribute"]['issuing_body/office/signer'][0] + " / " + 
-                                        this.item["_source"]["attribute"]['issuing_body/office/signer'][1] + " / " +
-                                        this.item["_source"]["attribute"]['issuing_body/office/signer'][2] }}
+                                        {{this.item['issuing_body/office/signer'][0] + " / " + 
+                                        this.item['issuing_body/office/signer'][1] + " / " +
+                                        this.item['issuing_body/office/signer'][2] }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -89,7 +93,7 @@
                                         Phạm vi
                                     </td>
                                     <td colSpan="3">
-                                        {{this.item["_source"]["attribute"]["effective_area"]}}
+                                        {{this.item["effective_area"]}}
                                     </td>
                                 </tr>
 
@@ -102,7 +106,7 @@
                                 
                                 <tr>
                                     <td colSpan="4" class="title">
-                                          {{ "Tình trạng hiệu lực: " + this.item["_source"]["attribute"]['document_info'][1]}}
+                                          {{ "Tình trạng hiệu lực: " + this.item['document_info'][1]}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -116,10 +120,10 @@ export default {
     name : "DocumentDetail",
     computed: {
         item (){
-            return this.$store.state.search.listElement[0];
+            return this.$store.state.mention.activeElement;
         },
         effective_date(){
-            let effective_date = this.item["_source"]["attribute"]['effective_date'];
+            let effective_date = this.item['effective_date'];
             if (effective_date != null && effective_date != undefined && effective_date.length != 0 ){
                 let tmp = effective_date.substring(0, 10).split("-");
                 return tmp[2] + "-" + tmp[1] + "-" + tmp[0];
@@ -128,7 +132,7 @@ export default {
         },
         issued_date(){
             
-            let issued_date = this.item["_source"]["attribute"]['issued_date'];
+            let issued_date = this.item['issued_date'];
             if (issued_date != null && issued_date != undefined && issued_date.length != 0 ){
                 let tmp = issued_date.substring(0, 10).split("-");
                 return tmp[2] + "-" + tmp[1] + "-" + tmp[0];

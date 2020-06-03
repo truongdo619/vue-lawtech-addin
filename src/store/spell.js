@@ -216,7 +216,6 @@ const spellModule = {
                         commit('SET_CURRENT_PARA_LOADING', index+1);
                         let paragraph = paragraphs.items[index];
                         let data = await spell_check(paragraph.text);
-                        console.log(paragraph.text)
                         if (index == 0){
                             commit('LOAD_ERROR_ITEMS_FULL', { data : data["data"], index : index+1}, true);
                         }

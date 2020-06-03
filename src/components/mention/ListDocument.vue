@@ -1,52 +1,48 @@
 <template>
     <el-collapse v-model="activeNames" @change="handleChange">
-        <el-collapse-item name="1">
+
+        <el-collapse-item v-for="(item, id) in this.items" :name="id + 1" :key="id">
             <template slot="title">
-                <span class="document_title">Sắc lệnh 22</span>
+                <span class="document_title" style="white-space:nowrap; text-overflow: ellipsis; overflow: hidden">
+                    <i v-bind:class="[activeNames.includes(id + 1) ? 'el-icon-remove-outline' : 'el-icon-circle-plus-outline']">
+
+                    </i> {{item.text}}
+                </span>
             </template>
-            <DocumentDetail></DocumentDetail>
-        </el-collapse-item>
-        <el-collapse-item name="2">
-            <template slot="title">
-                <span class="document_title">Thông tư 16-BYT/TT</span>
-            </template>
-            <DocumentDetail></DocumentDetail>
-        </el-collapse-item>
-        <el-collapse-item name="3">
-            <template slot="title">
-                <span class="document_title">Thông tư 42-BYT/TT</span>
-            </template>
-            <DocumentDetail></DocumentDetail>
-        </el-collapse-item>
-        <el-collapse-item name="4">
-            <template slot="title">
-                <span class="document_title">Nghị định 2333-BYT/NĐ</span>
-            </template>
-            <DocumentDetail></DocumentDetail>
+            <div v-for="(element, index) in item.detailed" :key="index">
+                <ElementResult v-bind:item="element" v-bind:id="index+1" v-on:click-element="handleClickElement(element)" />
+            </div>
         </el-collapse-item>
     </el-collapse>
 </template>
 
 <script>
-import DocumentDetail from './/DocumentDetail'
+import ElementResult from "../mention/ElementResult";
 export default {
     name : 'ListDocument',
-    components : {DocumentDetail},
-    data() {
-      return {
-        activeNames: []
-      }
-    },
+    components : {ElementResult},
+    props : ["items"],
     methods: {
       handleChange(val) {
-        console.log(val);
+          this.$store.dispatch("mention/set_state_active_names", val);
+      },
+      handleClickElement( element){
+          this.$store.dispatch("mention/set_state_active_element",element);
+          this.$emit('click-element' )
       }
+
+    },
+    computed :{
+        activeNames(){
+            return this.$store.state.mention.active_names;
+        }
     }
 }
 </script>
 
-<style scoped>
+<style>
 #app .mention .el-collapse{
+    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     border-top: none;
     border-bottom: none;
     position: relative;
@@ -58,4 +54,10 @@ export default {
     font-size: 16px;
     font-weight: 600;
 }
+
+.mention .el-collapse-item__header{
+    line-height: normal!important;
+    min-height: 48px;
+}
+
 </style>

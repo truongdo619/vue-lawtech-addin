@@ -104,7 +104,6 @@ export default {
     },
     methods:{
         update_pro(step_percentage, isIncre){
-            console.log(this.percentage)
             this.percentage += isIncre ? step_percentage : -step_percentage
         }
     }

@@ -9,6 +9,7 @@ const SEARCH_DOCUMENTS = {
   searchByCode: SEARCH_API + '/api/lawtech/document/searchByCode',
   searchByContent: SEARCH_API + '/api/lawtech/document/searchByContent',
   searchByTitle: SEARCH_API + '/api/lawtech/document/searchByTitle',
+  ner_search : SEARCH_API + '/api/lawtech/document/NERsearch'
 };
 
 

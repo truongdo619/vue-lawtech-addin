@@ -13,7 +13,6 @@ const templateModule = {
         LOAD_TEMPLATE(state, list){
             state.template_list = list;
             state.is_loading_template = false;
-            console.log(state.template_list.length)
         },
         LOAD_DETAIL_TEMPLATE(state, content){
             state.is_loading_detail = content;
