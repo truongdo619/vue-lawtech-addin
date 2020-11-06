@@ -6,10 +6,8 @@ const spell_check = async (content, settings) => {
   try {
     const res = await axios.post(SPELL_API, {
         "content" : content,
-        "settings" : {
-            "field": settings.field,
-            "speed": settings.speed
-        }
+        "field": settings.field,
+        "speed": settings.speed
     })
     // console.log(res)
     return res
