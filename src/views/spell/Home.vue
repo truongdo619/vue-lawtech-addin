@@ -236,6 +236,7 @@
   font-size: 12px;
   margin-right: 13px;
   color: rgb(74, 110, 224);
+  cursor: pointer;
 }
 .home .dialog-footer .el-button {
   padding: 7px 10px;
