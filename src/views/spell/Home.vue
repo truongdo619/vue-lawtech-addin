@@ -97,11 +97,16 @@
     import logo from "../../assets/logo-filled.png"
     export default {
         name: 'HomeSpell',
-        data(){
+        mounted() {
+          this.settings.field = this.$store.state.spell.settings.field
+
+          this.settings.speed = this.$store.state.spell.settings.speed;
+        },
+      data(){
             return {
                 settings :{
-                  field: "general",
-                  speed: "accurate"
+                  field: "",
+                  speed: ""
                 },
                 logo : logo,
                 dialogVisible: false
