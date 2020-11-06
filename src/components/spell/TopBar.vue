@@ -1,7 +1,7 @@
 <template>
     <div class="topbar">
         <span><b>Danh sách lỗi</b></span>
-        <router-link to="/spell/home">
+        <router-link :to="{ name: 'HomeSpell', query: { 'field': field, 'speed': speed }}">
             <span><i class="el-icon-close"></i></span>
         </router-link>
     </div>
@@ -9,7 +9,17 @@
 
 <script>
 export default {
-    "name" : "TopBar"
+    "name" : "TopBar",
+    data(){
+      return{
+        field: "",
+        speed: ""
+      }
+    },
+    mounted() {
+      this.field = this.$route.query.field
+      this.speed = this.$route.query.speed
+    }
 }
 </script>
 

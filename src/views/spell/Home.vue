@@ -27,12 +27,12 @@
 
         <div class="button_pane">
             <div style="margin-bottom:10px">
-                <router-link to="/spell/curlist">
+                <router-link :to="{ name: 'CurSpell', query: { 'field': settings.field, 'speed': settings.speed }}">
                     <el-button type="primary">Kiểm tra đoạn văn</el-button>
                 </router-link>
             </div>
             <div>
-                <router-link to="/spell/fulllist">
+              <router-link :to="{ name: 'FullSpell', query: { 'field': settings.field, 'speed': settings.speed }}">
                     <el-button type="danger">Kiểm tra văn bản</el-button>
                 </router-link>
             </div>
@@ -98,9 +98,10 @@
     export default {
         name: 'HomeSpell',
         mounted() {
-          this.settings.field = this.$store.state.spell.settings.field
+          this.settings.field = "field" in this.$route.query?  this.$route.query.field : "general"
 
-          this.settings.speed = this.$store.state.spell.settings.speed;
+          this.settings.speed = "speed" in this.$route.query? this.$route.query.speed : "accurate"
+
         },
       data(){
             return {
