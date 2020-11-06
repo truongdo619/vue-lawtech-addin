@@ -1,11 +1,15 @@
 import {SPELL_API} from "../../config/config_api";
 import axios from "axios";
 
-const spell_check = async (content) => {
+const spell_check = async (content, settings) => {
   // console.log(content)
   try {
     const res = await axios.post(SPELL_API, {
-        "content" : content
+        "content" : content,
+        "settings" : {
+            "field": settings.field,
+            "speed": settings.speed
+        }
     })
     // console.log(res)
     return res

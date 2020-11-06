@@ -27,7 +27,7 @@
                                         Toàn văn
                                     </td>
                                     <td colSpan="3">
-                                        <a target="_blank" :href="'https://lawtech.simidoc.vn/van-ban/a/' + this.item['_id']">
+                                        <a target="_blank" :href="'https://thuvienluat.simidoc.vn/van-ban/a/' + this.item['_id']">
                                             Xem tại đây
                                         </a>
                                     </td>

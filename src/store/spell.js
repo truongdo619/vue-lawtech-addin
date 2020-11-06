@@ -13,8 +13,11 @@ const spellModule = {
         currentParaLoading: 1,
         loadingErrorDone: false,
         isCur : true,
-        dictionary : []
-
+        dictionary : [],
+        settings :{
+            field: "general",
+            speed: "accurate"
+        }
     },
     mutations: {
         SET_CURRENT_PARA_LOADING(state, value){
@@ -69,11 +72,17 @@ const spellModule = {
         },
         ADD_TO_DICTIONARY(state, word){
             state.dictionary.push(word);
-        }
+        },
+        UPDATE_SETTINGS(state, settings){
+            state.settings = settings;
+        },
     },
     actions: {
         set_state_office({commit}, value){
             commit('SET_SATE_OFFiCE', value)
+        },
+        update_settings({commit}, value){
+            commit('UPDATE_SETTINGS', value)
         },
         async select_current_btn({state}, data){
             let arr = []
@@ -173,7 +182,7 @@ const spellModule = {
                 words.items[pos].select();
                 });
         },
-        async load_error_items_cur({commit}){
+        async load_error_items_cur({commit, state}){
             let content = null;
             
             let curIndex = 0;
@@ -196,12 +205,12 @@ const spellModule = {
             });
 
             if (content != null){
-                let data = await spell_check(content);
+                let data = await spell_check(content, state.settings);
                 commit('LOAD_ERROR_ITEMS_CUR', { data : data["data"], index : curIndex+1});
             }
             commit('SET_SATE_LOAD_CURRENT', true);
         },
-        async load_error_items_full({commit}){
+        async load_error_items_full({commit, state}){
             commit('SET_SATE_LOAD_FULL', false);
             
             commit('SET_LOADING_ERROR_DONE', false);
@@ -215,7 +224,7 @@ const spellModule = {
                         
                         commit('SET_CURRENT_PARA_LOADING', index+1);
                         let paragraph = paragraphs.items[index];
-                        let data = await spell_check(paragraph.text);
+                        let data = await spell_check(paragraph.text, state.settings);
                         if (index == 0){
                             commit('LOAD_ERROR_ITEMS_FULL', { data : data["data"], index : index+1}, true);
                         }
