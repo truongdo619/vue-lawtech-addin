@@ -116,8 +116,6 @@
       methods :{
           reset_settings(){
             this.settings = {field: "general", speed: "accurate"}
-
-            this.$store.dispatch("spell/update_settings", this.settings)
           },
           change_settings(){
           }

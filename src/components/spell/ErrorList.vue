@@ -18,11 +18,9 @@ export default {
         speed: ""
       }
     },
-    mounted() {
-      this.field = this.$route.query.field
-      this.speed = this.$route.query.speed
-    },
     created: function () {
+        this.field = this.$route.query.field
+        this.speed = this.$route.query.speed
         this.$store.dispatch("spell/load_error_items_cur", { "field" : this.field, "speed" : this.speed})
     },
     computed: {
@@ -31,6 +29,7 @@ export default {
         },
         loading(){
             return this.$store.state.spell.loadErrorItemsCur
+          // return true
         }
     },
     methods: {

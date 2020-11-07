@@ -174,7 +174,6 @@ const spellModule = {
         },
         async load_error_items_cur({commit}, settings){
             let content = null;
-            
             let curIndex = 0;
             commit('SET_SATE_LOAD_CURRENT', false);
             await Word.run(async context => {
