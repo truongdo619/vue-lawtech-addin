@@ -12,8 +12,18 @@ import ErrorElement from "./ErrorElement"
 export default {
     name: 'FullErrorList',
     components : { ErrorElement },
+    data(){
+      return{
+        field: "",
+        speed: ""
+      }
+    },
+    mounted() {
+      this.field = this.$route.query.field
+      this.speed = this.$route.query.speed
+    },
     created : function() {
-        this.$store.dispatch("spell/load_error_items_full")
+        this.$store.dispatch("spell/load_error_items_full", { "field" : this.field, "speed" : this.speed})
     },
     computed: {
         items() {

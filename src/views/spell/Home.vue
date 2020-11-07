@@ -119,9 +119,8 @@
 
             this.$store.dispatch("spell/update_settings", this.settings)
           },
-        change_settings(){
-            this.$store.dispatch("spell/update_settings", this.settings)
-        }
+          change_settings(){
+          }
       }
     }
 </script>
