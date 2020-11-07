@@ -29,7 +29,6 @@ export default {
         },
         loading(){
             return this.$store.state.spell.loadErrorItemsCur
-          // return true
         }
     },
     methods: {

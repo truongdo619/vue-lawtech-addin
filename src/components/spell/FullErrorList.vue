@@ -21,7 +21,7 @@ export default {
     created: function () {
       this.field = this.$route.query.field
       this.speed = this.$route.query.speed
-      this.$store.dispatch("spell/load_error_items_cur", { "field" : this.field, "speed" : this.speed})
+      this.$store.dispatch("spell/load_error_items_full", { "field" : this.field, "speed" : this.speed})
     },
     computed: {
         items() {
