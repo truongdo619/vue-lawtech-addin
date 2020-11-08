@@ -72,7 +72,7 @@ const spellModule = {
         },
         UPDATE_RESET_FULL_LIST(state, value){
            if (value){
-               state.loadErrorItemsCur = false;
+               state.loadErrorItems = false;
            }
             state.resetFullList = value
         }
@@ -236,9 +236,7 @@ const spellModule = {
                         {
                             commit('LOAD_ERROR_ITEMS_FULL', { data : data["data"], index : index+1, isNew: false});
                         }
-                        if (reset_list === false){
-                            commit('SET_SATE_LOAD_FULL', true);
-                        }
+                        commit('SET_SATE_LOAD_FULL', true);
                     }
                 }
             }); 
