@@ -1,9 +1,12 @@
 <template>
     <div class="topbar">
         <span><b>Danh sách lỗi</b></span>
+
         <router-link :to="{ name: 'HomeSpell', query: { 'field': field, 'speed': speed }}">
-            <span><i class="el-icon-close"></i></span>
+            <span class="coordinate_button"><i class="el-icon-close"></i></span>
         </router-link>
+
+        <span @click="reset_error_list" class="coordinate_button"><i class="el-icon-refresh"></i></span>
     </div>
 </template>
 
@@ -13,13 +16,25 @@ export default {
     data(){
       return{
         field: "",
-        speed: ""
+        speed: "",
+        isCur: false
       }
     },
     mounted() {
       this.field = this.$route.query.field
       this.speed = this.$route.query.speed
-    }
+      this.isCur = this.$route.name.includes("CurSpell")
+    },
+  methods: {
+      reset_error_list(){
+        if (this.isCur) {
+          this.$store.dispatch("spell/load_error_items_cur", { "field" : this.field, "speed" : this.speed})
+        }
+        else {
+          this.$store.dispatch("spell/load_error_items_full", {"field": this.field, "speed": this.speed})
+        }
+      }
+  }
 }
 </script>
 
@@ -39,6 +54,10 @@ export default {
 }
 .topbar span:last-child{
     float: right;
-    padding-right: 20px;
+    padding-right: 16px;
+}
+
+.topbar span:hover{
+  background-color: #2b579a;
 }
 </style>
