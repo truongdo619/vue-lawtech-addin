@@ -13,7 +13,8 @@ const spellModule = {
         currentParaLoading: 1,
         loadingErrorDone: false,
         isCur : true,
-        dictionary : []
+        dictionary : [],
+        resetFullList: false
     },
     mutations: {
         SET_CURRENT_PARA_LOADING(state, value){
@@ -46,7 +47,7 @@ const spellModule = {
             state.errorItemsCur = result;
         },
         LOAD_ERROR_ITEMS_FULL(state, items, isNew){
-            if (isNew == true){
+            if (isNew === true){
                 state.errorItems = [];
                 state.totalErrorItems = 0;
             }
@@ -68,9 +69,15 @@ const spellModule = {
         },
         ADD_TO_DICTIONARY(state, word){
             state.dictionary.push(word);
+        },
+        UPDATE_RESET_FULL_LIST(state, value){
+            state.resetFullList = value
         }
     },
     actions: {
+        update_reset_full_list({commit}, value){
+            commit('UPDATE_RESET_FULL_LIST', value)
+        },
         set_state_office({commit}, value){
             commit('SET_SATE_OFFiCE', value)
         },
@@ -199,7 +206,9 @@ const spellModule = {
             }
             commit('SET_SATE_LOAD_CURRENT', true);
         },
-        async load_error_items_full({commit}, settings){
+        async load_error_items_full({commit, state}, settings){
+            let reset_list = false
+            commit('SET_LOADING_ERROR_DONE', true);
             commit('SET_SATE_LOAD_FULL', false);
             
             commit('SET_LOADING_ERROR_DONE', false);
@@ -214,7 +223,11 @@ const spellModule = {
                         commit('SET_CURRENT_PARA_LOADING', index+1);
                         let paragraph = paragraphs.items[index];
                         let data = await spell_check(paragraph.text, settings);
-                        if (index == 0){
+                        if (state.resetFullList){
+                            reset_list = true
+                            break
+                        }
+                        if (index === 0){
                             commit('LOAD_ERROR_ITEMS_FULL', { data : data["data"], index : index+1}, true);
                         }
                         else
@@ -226,6 +239,9 @@ const spellModule = {
                 }
             }); 
             commit('SET_LOADING_ERROR_DONE', true);
+            if (reset_list){
+                commit('UPDATE_RESET_FULL_LIST', false)
+            }
         },
         add_to_dictionary({commit}, word){
             commit('ADD_TO_DICTIONARY', word);

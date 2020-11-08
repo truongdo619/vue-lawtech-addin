@@ -25,16 +25,28 @@ export default {
       this.speed = this.$route.query.speed
       this.isCur = this.$route.name.includes("CurSpell")
     },
-  methods: {
-      reset_error_list(){
-        if (this.isCur) {
-          this.$store.dispatch("spell/load_error_items_cur", { "field" : this.field, "speed" : this.speed})
+    methods: {
+        reset_error_list(){
+          if (this.isCur) {
+            this.$store.dispatch("spell/load_error_items_cur", { "field" : this.field, "speed" : this.speed})
+          }
+          else {
+            this.$store.dispatch("spell/update_reset_full_list", true)
+          }
         }
-        else {
-          this.$store.dispatch("spell/load_error_items_full", {"field": this.field, "speed": this.speed})
+    },
+    computed:{
+        reset_full_list(){
+          return this.$store.state.spell.resetFullList
         }
+    },
+    watch:{
+      reset_full_list: function (newValue, oldValue) {
+          if (oldValue === true){
+            this.$store.dispatch("spell/load_error_items_full", { "field" : this.field, "speed" : this.speed})
+          }
       }
-  }
+    }
 }
 </script>
 
@@ -48,6 +60,7 @@ export default {
     background-color: #1e87f0;
 }
 .topbar span{
+    cursor: pointer;
     line-height: 40px;
     padding-left: 15px;
     color: white;
