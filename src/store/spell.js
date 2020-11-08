@@ -71,6 +71,9 @@ const spellModule = {
             state.dictionary.push(word);
         },
         UPDATE_RESET_FULL_LIST(state, value){
+           if (value){
+               state.loadErrorItemsCur = false;
+           }
             state.resetFullList = value
         }
     },
@@ -208,7 +211,6 @@ const spellModule = {
         },
         async load_error_items_full({commit, state}, settings){
             let reset_list = false
-            commit('SET_LOADING_ERROR_DONE', true);
             commit('SET_SATE_LOAD_FULL', false);
             
             commit('SET_LOADING_ERROR_DONE', false);
