@@ -46,8 +46,8 @@ const spellModule = {
               })
             state.errorItemsCur = result;
         },
-        LOAD_ERROR_ITEMS_FULL(state, items, isNew){
-            if (isNew === true){
+        LOAD_ERROR_ITEMS_FULL(state, items){
+            if (items.isNew === true){
                 state.errorItems = [];
                 state.totalErrorItems = 0;
             }
@@ -228,11 +228,11 @@ const spellModule = {
                             break
                         }
                         if (index === 0){
-                            commit('LOAD_ERROR_ITEMS_FULL', { data : data["data"], index : index+1}, true);
+                            commit('LOAD_ERROR_ITEMS_FULL', { data : data["data"], index : index+1, isNew : true});
                         }
                         else
                         {
-                            commit('LOAD_ERROR_ITEMS_FULL', { data : data["data"], index : index+1}, false);
+                            commit('LOAD_ERROR_ITEMS_FULL', { data : data["data"], index : index+1, isNew: false});
                         }   
                         commit('SET_SATE_LOAD_FULL', true);
                     }
