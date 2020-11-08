@@ -235,8 +235,10 @@ const spellModule = {
                         else
                         {
                             commit('LOAD_ERROR_ITEMS_FULL', { data : data["data"], index : index+1, isNew: false});
-                        }   
-                        commit('SET_SATE_LOAD_FULL', true);
+                        }
+                        if (reset_list === false){
+                            commit('SET_SATE_LOAD_FULL', true);
+                        }
                     }
                 }
             }); 
